@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,10 @@ Route::get('products/{id}/delete', [ProductController::class, 'delete'])->name('
 Route::post('products',[ProductController::class,'store'])->name('product.store');
 Route::get('product/{id}/edit',[ProductController::class,'edit'])->name('products.edit');
 Route::put('uproducts/{id}/', [ProductController::class,'update'])->name('product.update');
+
+##generate Category routes in one line using resource Controller
+Route::resource('categories', CategoryController::class);
+##################################################
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
