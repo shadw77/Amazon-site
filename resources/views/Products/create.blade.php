@@ -1,44 +1,63 @@
 @extends('layouts.app')
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif  
 <h1 class="ms-5 mb-5">Create New Product</h1>
 <div class="container">
 <form method="post" action="{{route('product.store')}}">
     @csrf
   <div class="mb-3">
     <label  class="form-label">Product Name</label>
-    <input type="text" class="form-control" name="name" >
+    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+    @error('name')
+    <div class="text-danger fw-bold">{{$message}}</div>
+    @enderror
   </div>
   <div class="mb-3">
     <label  class="form-label">Image</label>
-    <input  class="form-control" name="image">
+    <input  class="form-control" name="image" value="{{ old('image') }}">
+    @error('image')
+    <div class="text-danger fw-bold">{{$message}}</div>
+    @enderror
   </div>
   <div class="mb-3">
     <label  class="form-label">Description</label>
-    <input  class="form-control" name="description">
+    <input  class="form-control" name="description" value="{{ old('description') }}">
+    @error('description')
+    <div class="text-danger fw-bold">{{$message}}</div>
+    @enderror
   </div>
+ 
   <div class="mb-3">
     <label  class="form-label">Price</label>
-    <input  class="form-control" name="price">
+    <input  class="form-control" name="price" value="{{ old('price') }}">
   </div>
   <div class="mb-3">
     <label  class="form-label">Rating</label>
-    <input  class="form-control" name="rating" >
+    <input  class="form-control" name="rating" value="{{ old('rating') }}" >
   </div>
   <div class="mb-3">
     <label  class="form-label">DiscountPercentage</label>
-    <input  class="form-control" name="DiscountPercentage" >
+    <input  class="form-control" name="DiscountPercentage" value="{{ old('DiscountPercentage') }}" >
   </div>
   <div class="mb-3">
     <label  class="form-label">Stock</label>
-    <input  class="form-control" name="stock">
+    <input  class="form-control" name="stock" value="{{ old('stock') }}">
   </div>
   <div class="mb-3">
     <label  class="form-label">Brand</label>
-    <input  class="form-control" name="brand" >
+    <input  class="form-control" name="brand" value="{{ old('brand') }}">
   </div>
   <div class="mb-3">
     <label  class="form-label">Category</label>
-    <input  class="form-control" name="category" >
+    <input  class="form-control" name="category" value="{{ old('category') }}">
   </div>
  
   <button type="submit" class="btn btn-primary">Submit</button>

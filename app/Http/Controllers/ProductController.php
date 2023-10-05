@@ -125,6 +125,15 @@ class ProductController extends Controller
       return view('Products.create');
     }
     function store(){
+
+      \request()->validate(
+        ["name"=>"required",
+        "image"=>"unique:products",
+        "description"=>"required|min:10"],[
+          "name.requied"=>"Product name is required",
+          "description.min"=>"Product description must be at least 10 chars."
+        ]
+      );
       // dd('data recieved');
       $data = \request();
       $name = \request()->get('name');
