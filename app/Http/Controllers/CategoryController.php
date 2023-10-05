@@ -61,6 +61,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view('Categories.edit', ['category'=>$category]);
     }
 
     /**
@@ -69,6 +70,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        $request->validate(['name'=>'required|min:2' , 'logo'=>'required']);
+        $category->update($request->all());
+        return to_route('categories.show', $category->id);
     }
 
     /**
@@ -77,5 +81,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $category->delete();
+        return to_route('categories.index');
     }
 }

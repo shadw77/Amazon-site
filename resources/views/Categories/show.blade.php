@@ -5,7 +5,10 @@
             <div class='card-body'>
             <div class='body'>
             <table class='table table-dark'>
-            <tr><th>Logo</th><th><p class='card-text'> {{$category->logo}}</p></th></tr>
+
+            <tr><th>Logo</th><th>    
+                    <img src="{{asset('images/' . $category->logo)}}" class='w-25 rounded mx-auto'>
+            </th></tr>
             <tr><th>Name</th><th><h5 class='card-title'>{{$category->name}}</h5></th></tr>
             <tr><th>Created At</th><th><p class='card-text'> {{$category->created_at}}</p></th></tr>
 
