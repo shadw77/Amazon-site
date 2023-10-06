@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -122,7 +123,9 @@ class ProductController extends Controller
 
     }
     function create(){
-      return view('Products.create');
+
+      $categories = Category::all();
+      return view('Products.create',['categories'=>$categories]);
     }
     function store(){
 
@@ -145,6 +148,7 @@ class ProductController extends Controller
       $brand = \request()->get('brand');
       $category = \request()->get('category');
       $image = \request()->get('image');
+      $category_id = \request()->get('category_id');
 
       $product = new Product();
       $product->name = $name;
@@ -156,6 +160,7 @@ class ProductController extends Controller
       $product->brand = $brand;
       $product->category = $category;
       $product->image = $image;
+      $product->category_id = $category_id;
 
       $product->save();
       // return to_route('products.index');

@@ -59,6 +59,16 @@
     <label  class="form-label">Category</label>
     <input  class="form-control" name="category" value="{{ old('category') }}">
   </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Category</label>
+  <select class="form-select" name="category_id">
+    <option selected disabled value="">Open this select menu</option>
+    @foreach($categories as $category)
+    <option value="{{$category->id}}">{{$category->name}}</option>
+    @endforeach
+  </select>
+  </div>
  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
