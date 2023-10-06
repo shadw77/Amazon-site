@@ -16,7 +16,12 @@
 
             </table>
             <a href="{{route('categories.index')}}" class="btn btn-primary">Back to all Categories</a>
-         
+            <h1>Products in this category</h1>
+            <ol>
+                @foreach($category->products as $prd)
+                  <li> <a href="{{route('products.show', $prd->id)}}"> {{$prd->name}}</a> </li>
+                @endforeach
+            </ol>
             </div>
             </div>
         </div>
