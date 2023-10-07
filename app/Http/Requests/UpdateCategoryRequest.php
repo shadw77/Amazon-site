@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             //
             // 'name'=>'required|unique:categories|min:3'
-            'name'=> ['required' ,  Rule::unique('categories')->ignore($this->Category)]
+            'name'=> ['required' ,  Rule::unique('categories')->ignore($this->category)]
         ];
     }
     function messages(){

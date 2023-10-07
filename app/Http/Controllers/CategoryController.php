@@ -44,7 +44,13 @@ class CategoryController extends Controller
         // dd($name);
         // Category::create(['name'=>$request->get('name'),'logo'=>$request->get('logo')]);
         ###### use mass assignment
-        Category::create($request->all());
+        $request_data = $request->all();
+        if($request->hasFile("logo")){
+            $logo = $request_data["logo"];
+            $path = $logo->store("Up_logo","category_logo");
+            $request_data["logo"] = $path;
+        }
+        Category::create($request_data);
         return to_route('categories.index');
 
     }

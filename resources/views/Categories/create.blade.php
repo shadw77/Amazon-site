@@ -3,7 +3,7 @@
 
 <h1 class="ms-5 mb-5">Create New Category</h1>
 <div class="container">
-<form method="post" action="{{route('categories.store')}}">
+<form method="post" action="{{route('categories.store')}}" enctype="multipart/form-data">
     @csrf
   <div class="mb-3">
     <label  class="form-label">Category Name</label>
@@ -14,7 +14,7 @@
   </div>
   <div class="mb-3">
     <label  class="form-label">Logo</label>
-    <input  class="form-control" name="logo" value="{{ old('image') }}">
+    <input type="file"  class="form-control" name="logo" value="{{ old('name') }}" >
     @error('image')
     <div class="text-danger fw-bold">{{$message}}</div>
     @enderror

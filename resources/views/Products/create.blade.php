@@ -55,10 +55,7 @@
     <label  class="form-label">Brand</label>
     <input  class="form-control" name="brand" value="{{ old('brand') }}">
   </div>
-  <div class="mb-3">
-    <label  class="form-label">Category</label>
-    <input  class="form-control" name="category" value="{{ old('category') }}">
-  </div>
+ 
 
   <div class="mb-3">
     <label for="" class="form-label">Category</label>

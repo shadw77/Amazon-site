@@ -146,7 +146,7 @@ class ProductController extends Controller
       $rating = \request()->get('rating');
       $stock = \request()->get('stock');
       $brand = \request()->get('brand');
-      $category = \request()->get('category');
+      // $category = \request()->get('category');
       $image = \request()->get('image');
       $category_id = \request()->get('category_id');
 
@@ -158,7 +158,7 @@ class ProductController extends Controller
       $product->rating = $rating;
       $product->stock = $stock;
       $product->brand = $brand;
-      $product->category = $category;
+      // $product->category = $category;
       $product->image = $image;
       $product->category_id = $category_id;
 
@@ -169,10 +169,13 @@ class ProductController extends Controller
     }
     function edit($id){
       $iproduct = Product::findorfail($id);
-      return view('Products.edit', ['product'=>$iproduct]);
+      $categories = Category::all();
+      return view('Products.edit', ['product'=>$iproduct, 'categories'=>$categories]);
 
     }
     function update(Request $request, $id){
+      // $categories = Category::all();
+
     
       $iproduct = Product::findorfail($id);
       $iproduct->name = $request->name;
@@ -182,7 +185,7 @@ class ProductController extends Controller
       $iproduct->rating = $request->input('rating');
       $iproduct->stock = $request->input('stock');
       $iproduct->brand = $request->input('brand');
-      $iproduct->category = $request->input('category');
+      // $iproduct->category = $request->input('category');
       $iproduct->image = $request->input('image');
 
       $iproduct->update();

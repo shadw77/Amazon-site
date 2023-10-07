@@ -37,11 +37,17 @@
     <label  class="form-label">Brand</label>
     <input  class="form-control" name="brand" value="{{$product->brand}}">
   </div>
-  <div class="mb-3">
-    <label  class="form-label">Category</label>
-    <input  class="form-control" name="category" value="{{$product->category}}">
+
+  <!-- <div class="mb-3">
+    <label for="" class="form-label">Category</label>
+  <select class="form-select" name="category">
+    <option selected disabled value="" >Open this select menu</option>
+    @foreach($categories as $category)
+    <option value="{{$category->id}}" >{{$category->name}}</option>
+    @endforeach
+  </select>
   </div>
- 
+  -->
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
 </div>
