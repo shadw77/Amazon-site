@@ -13,9 +13,8 @@
             <tr><th>Rating</th><th><p class='card-text'> {{$product->rating}}</p></th></tr>
             <tr><th>Stock</th><th><p class='card-text'>{{$product->stock}}</p></th></tr>
             <tr><th>Brand</th><th><p class='card-text'>{{$product->brand}}</p></th></tr>
-            <!-- <tr><th>Category</th><th><p class='card-text'> {{$product->category_id}}</p></th></tr> -->
             @if($product->category)
-            <tr><th>Category  </th><th><p class='card-text'><a href="{{ route('categories.show', $product->category->id)}}">{{$product->category->name}}</a> </p></th></tr>
+            <tr><th>Category  </th><th><p class='card-text'><a href="{{ route('categories.show', $product->category_id)}}">{{$product->category->name}}</a> </p></th></tr>
             @else
             <tr><th>Category  </th><th></th></tr>
             @endif

@@ -45,7 +45,7 @@
   </div>
   <div class="mb-3">
     <label  class="form-label">DiscountPercentage</label>
-    <input  class="form-control" name="DiscountPercentage" value="{{ old('DiscountPercentage') }}" >
+    <input  class="form-control" name="discountPercentage" value="{{ old('discountPercentage') }}" >
   </div>
   <div class="mb-3">
     <label  class="form-label">Stock</label>
@@ -56,7 +56,6 @@
     <input  class="form-control" name="brand" value="{{ old('brand') }}">
   </div>
  
-
   <div class="mb-3">
     <label for="" class="form-label">Category</label>
   <select class="form-select" name="category_id">

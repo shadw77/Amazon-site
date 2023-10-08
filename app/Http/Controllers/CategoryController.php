@@ -90,6 +90,15 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        if( $category->logo){
+            try{
+                unlink("images/Category_logo/{$category->logo}");
+            }
+            catch(\Exception $e){
+                dd($e);
+
+            }
+        }
         $category->delete();
         return to_route('categories.index');
     }

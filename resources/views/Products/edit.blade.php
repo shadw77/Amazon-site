@@ -27,7 +27,7 @@
   </div>
   <div class="mb-3">
     <label  class="form-label">DiscountPercentage</label>
-    <input  class="form-control" name="DiscountPercentage" value="{{$product->discountPercentage}}" >
+    <input  class="form-control" name="discountPercentage" value="{{$product->discountPercentage}}" >
   </div>
   <div class="mb-3">
     <label  class="form-label">Stock</label>

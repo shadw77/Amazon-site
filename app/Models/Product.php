@@ -10,6 +10,8 @@ use App\Models\Category;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = 
+    ['name', 'description','price','discountPercentage','rating','stock','brand','image','category_id','creator_id'];
 
     ## define relation between category model and product model
     function category(){

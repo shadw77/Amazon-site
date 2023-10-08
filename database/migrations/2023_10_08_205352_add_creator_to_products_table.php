@@ -12,13 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            // add fk column
-            $table->foreignId('category_id') ->nullable()
-            ->constrained('categories')
-            ->onUpdate('cascade')
-            ->onDelete('cascade')
-           ;
-
+            //
+            $table->foreignId('creator_id')->nullable()->constrained('users')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -29,10 +25,8 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-
-            $table->dropForeign('products_category_id_foreign');      
-            $table->dropColumn('category_id');
-
+            $table->dropForeign('products_creator_id_foreign');
+            $table->dropColumn('creator_id');
         });
     }
 };

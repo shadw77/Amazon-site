@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -137,34 +137,12 @@ class ProductController extends Controller
           "description.min"=>"Product description must be at least 10 chars."
         ]
       );
-      // dd('data recieved');
-      $data = \request();
-      $name = \request()->get('name');
-      $description = \request()->get('description');
-      $price = \request()->get('price');
-      $DiscountPercentage = \request()->get('DiscountPercentage');
-      $rating = \request()->get('rating');
-      $stock = \request()->get('stock');
-      $brand = \request()->get('brand');
-      // $category = \request()->get('category');
-      $image = \request()->get('image');
-      $category_id = \request()->get('category_id');
-
-      $product = new Product();
-      $product->name = $name;
-      $product->description = $description;
-      $product->price = $price;
-      $product->discountPercentage = $DiscountPercentage;
-      $product->rating = $rating;
-      $product->stock = $stock;
-      $product->brand = $brand;
-      // $product->category = $category;
-      $product->image = $image;
-      $product->category_id = $category_id;
-
-      $product->save();
-      // return to_route('products.index');
-      return to_route('products.show',$product->id);
+     
+      $requestdata = \request()->all();
+      $requestdata['creator_id'] = Auth::id();
+    dd(Product::create($requestdata));
+      $product = Product::create($requestdata);
+      // return to_route('products.show',$product->id);
 
     }
     function edit($id){
@@ -181,7 +159,7 @@ class ProductController extends Controller
       $iproduct->name = $request->name;
       $iproduct->description =$request->input('description');
       $iproduct->price =$request->input('price');
-      $iproduct->discountPercentage = $request->input('DiscountPercentage');
+      $iproduct->discountPercentage = $request->input('discountPercentage');
       $iproduct->rating = $request->input('rating');
       $iproduct->stock = $request->input('stock');
       $iproduct->brand = $request->input('brand');
