@@ -24,7 +24,6 @@
             <a href="{{route('products.show', $product->id)}}" class="btn btn-info">See More</a> 
             <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Update</a> 
             <a href="{{route('products.delete', $product->id)}}" class="btn btn-danger">Delete</a> 
-
         </div>
         </div>
 
