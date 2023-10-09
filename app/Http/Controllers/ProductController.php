@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -28,6 +29,10 @@ class ProductController extends Controller
 
     }
     function delete($id){
+      if (! Gate::allows('is-admin')) {
+        abort(403);
+    }
+
       $iproduct = Product::findorfail($id);
       $iproduct->delete();
       // return 'deleted';
@@ -52,7 +57,7 @@ class ProductController extends Controller
      
       $requestdata = \request()->all();
       $requestdata['creator_id'] = Auth::id();
-    dd(Product::create($requestdata));
+    // dd(Product::create($requestdata));
       $product = Product::create($requestdata);
       // return to_route('products.show',$product->id);
 
