@@ -6,6 +6,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class CategoryController extends Controller
@@ -83,10 +85,15 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
-        // $request->validate(['name'=>'required|min:2' , 'logo'=>'required']);
-        $category->update($request->all());
-        return to_route('categories.show', $category->id);
+        $response = Gate::inspect('update', $category);
+        if($response->allowed()){
+               
+            $category->update($request->all());
+            return to_route('categories.show', $category->id);
+        }
+        return abort(403);
+
+       
     }
 
     /**

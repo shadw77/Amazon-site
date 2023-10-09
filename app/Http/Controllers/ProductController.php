@@ -29,15 +29,22 @@ class ProductController extends Controller
 
     }
     function delete($id){
-      if (! Gate::allows('is-admin')) {
-        abort(403);
-    }
+    //   if (! Gate::allows('is-admin')) {
+    //     abort(403);
+    // }
+       
 
+     
       $iproduct = Product::findorfail($id);
-      $iproduct->delete();
-      // return 'deleted';
-      return to_route('products.index');
+      $response = Gate::inspect('destroy', $iproduct);
+      // dd($response==true);
+      if($response->allowed()){
+              $iproduct->delete();
+              return to_route('products.index');
 
+      }
+      return abort(403);
+     
     }
     function create(){
 
