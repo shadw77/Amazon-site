@@ -10,9 +10,14 @@ use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
+
+    function __construct(){
+        $this->middleware('auth')->only(['store','update','destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         //
