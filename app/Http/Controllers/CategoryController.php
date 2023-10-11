@@ -15,6 +15,7 @@ class CategoryController extends Controller
 
     function __construct(){
         $this->middleware('auth')->only(['store','update','destroy']);
+        $this->middleware(['c_name'])->only('store');
     }
     /**
      * Display a listing of the resource.
