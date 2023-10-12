@@ -12,6 +12,9 @@ use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
+    function __construct(){
+        $this->middleware('auth:sanctum')->only('store');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,7 +41,7 @@ class ProductController extends Controller
         }
        
         $product = Product::create($request->all());
-        return response($product,201);
+        // return response($product,201);
         return (new ProductResource($product))->response()->setStatusCode(201);
     }
 

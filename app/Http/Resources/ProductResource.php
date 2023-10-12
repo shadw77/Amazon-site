@@ -21,8 +21,9 @@ class ProductResource extends JsonResource
             "product name"=>$this->name,
             "product price"=>$this->price,
             "product brand"=>$this->brand,
-            // "category id"=>$this->category,
-            "category name"=>$this->category->name ? $this->category->name: null,
+            "category id"=>$this->category,
+            "owner"=>$this->creator_id,
+            // "category name"=>$this->category->name ? $this->category->name: null,
 
             // "category resource"=> new CategoryResource($this->category),
         ];
