@@ -2,7 +2,7 @@
 @section('content')
 <h1 class="ms-5 mb-5">Edit Category</h1>
 <div class="container">
-<form method="post" action="{{route('categories.update', $category->id) }}">
+<form method="post" action="{{route('categories.update', $category->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
   <div class="mb-3">
@@ -15,7 +15,7 @@
 
   <div class="mb-3">
     <label  class="form-label">Logo</label>
-    <input  class="form-control" name="logo" value="{{$category->logo}}" >
+    <input  class="form-control" name="logo" type="file"  value="{{$category->logo}}" >
     @error('logo')
     <div class="text-danger fw-bold">{{$message}}</div>
     @enderror

@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
         //
 
         Category::factory()
-        ->count(10)
+        ->count(50)
         ->create();
     }
 }

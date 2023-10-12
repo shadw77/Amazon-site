@@ -87,6 +87,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $response = Gate::inspect('update', $category);
+        // dd($response);
         if($response->allowed()){
                
             $category->update($request->all());
@@ -108,7 +109,7 @@ class CategoryController extends Controller
                 unlink("images/Category_logo/{$category->logo}");
             }
             catch(\Exception $e){
-                dd($e);
+                // dd($e);
 
             }
         }

@@ -37,7 +37,7 @@ class ProductController extends Controller
      
       $iproduct = Product::findorfail($id);
       $response = Gate::inspect('destroy', $iproduct);
-      // dd($response==true);
+      // dd($response);
       if($response->allowed()){
               $iproduct->delete();
               return to_route('products.index');

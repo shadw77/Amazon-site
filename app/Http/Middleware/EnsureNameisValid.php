@@ -16,7 +16,8 @@ class EnsureNameisValid
     public function handle(Request $request, Closure $next): Response
     {
         $name = $request->get('name');
-        if ($name !== 'category') {
+        if ($name !== 'category') {     
+
         return $next($request);
         }
         return abort(403);
