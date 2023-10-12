@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,8 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-        return $products;
+        // return $products;
+        return ProductResource::collection($products);
     }
 
     /**
@@ -37,6 +39,7 @@ class ProductController extends Controller
        
         $product = Product::create($request->all());
         return response($product,201);
+        return (new ProductResource($product))->response()->setStatusCode(201);
     }
 
     /**
@@ -45,7 +48,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
-        return $product;
+        // return $product;
+        return new ProductResource($product);
     }
 
     /**
@@ -62,7 +66,7 @@ class ProductController extends Controller
         }
        
         $product->update($request->all());
-        return response($product,200);
+        return new ProductResource($product);
         
 
     }

@@ -20,7 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // API
 use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\CategoryController;
+
 // Route::get('products',[ProductController::class,'index']);
 // Route::get('products/{product}',[ProductController::class,'show']);
 Route::apiResource('products', ProductController::class);
+Route::apiResource('categories', CategoryController::class);
+
 
