@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
+use App\Models\User;
 
 
 /*
@@ -44,3 +45,29 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 ################################
+use Laravel\Socialite\Facades\Socialite;
+ 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+ 
+Route::get('/auth/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+ 
+    // $user->token
+    $user = User::where("email", $githubUser->email)->first();
+    if(! $user){
+   
+    $user = User::updateOrCreate([
+        'github_id' => $githubUser->id,
+    ], [
+        'name' => $githubUser->name,
+        'email' => $githubUser->email,
+        'github_token' => $githubUser->token,
+        'github_refresh_token' => $githubUser->refreshToken,
+    ]);
+}
+    Auth::login($user);
+ 
+    return redirect('/products');
+});
